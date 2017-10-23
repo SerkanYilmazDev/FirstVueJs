@@ -1,0 +1,270 @@
+<script src="https://unpkg.com/vue"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+  crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+  crossorigin="anonymous">
+<style>
+
+
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font: 15px/1.3 'Open Sans', sans-serif;
+    color: #5e5b64;
+    text-align: center;
+  }
+
+  a,
+  a:visited {
+    outline: none;
+    color: #389dc1;
+  }
+
+  a:hover {
+    text-decoration: none;
+  }
+
+  section,
+  footer,
+  header,
+  aside,
+  nav {
+    display: block;
+  }
+
+
+  .bar {
+    background-color: #5c9bb7;
+
+    background-image: -webkit-linear-gradient(top, #5c9bb7, #5392ad);
+    background-image: -moz-linear-gradient(top, #5c9bb7, #5392ad);
+    background-image: linear-gradient(top, #5c9bb7, #5392ad);
+
+    box-shadow: 0 1px 1px #ccc;
+    border-radius: 2px;
+    width: 500px;
+    padding: 14px;
+    margin: 45px auto 20px;
+    position: relative;
+  }
+
+  .bar input {
+    background: #fff no-repeat 13px 13px;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkU5NEY0RTlFMTA4NzExRTM5RTEzQkFBQzMyRjkyQzVBIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkU5NEY0RTlGMTA4NzExRTM5RTEzQkFBQzMyRjkyQzVBIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6RTk0RjRFOUMxMDg3MTFFMzlFMTNCQUFDMzJGOTJDNUEiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RTk0RjRFOUQxMDg3MTFFMzlFMTNCQUFDMzJGOTJDNUEiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4DjA/RAAABK0lEQVR42pTSQUdEURjG8dOY0TqmPkGmRcqYD9CmzZAWJRHVRIa0iFYtM6uofYaiEW2SRJtEi9YxIklp07ZkWswu0v/wnByve7vm5ee8M+85zz1jbt9Os+WiGkYdYxjCOx5wgFeXUHmtBSzpcCGa+5BJTCjEP+0nKWAT8xqe4ArPGEEVC1hHEbs2oBwdXkM7mj/JLZrad437sCGHOfUtcziutuYu2v8XUFF/4f6vMK/YgAH1HxkBYV60AR31gxkBYd6xAeF3VzMCwvzOBpypX8V4yuFRzX2d2gD/l5yjH4fYQEnzkj4fae5rJulF2sMXVrAsaTWttRFu4Osb+1jEDT71/ZveyhouTch2fINQL9hKefKjuYFfuznXWzXMTabyrvfyIV3M4vhXgAEAUMs7K0J9UJAAAAAASUVORK5CYII=);
+
+    border: none;
+    width: 100%;
+    line-height: 19px;
+    padding: 11px 0;
+
+    border-radius: 2px;
+    box-shadow: 0 2px 8px #c4c4c4 inset;
+    text-align: left;
+    font-size: 14px;
+    font-family: inherit;
+    color: #738289;
+    font-weight: bold;
+    outline: none;
+    text-indent: 40px;
+  }
+
+  ul {
+    list-style: none;
+    width: 528px;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  ul li {
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+    overflow: hidden;
+  }
+
+  ul li img {
+    width: 60px;
+    height: 60px;
+    float: left;
+    border: none;
+  }
+
+  ul li input {
+    float: right;
+  }
+
+  ul li p {
+    margin-left: 75px;
+    font-weight: bold;
+    padding-top: 12px;
+    color: #6e7a7f;
+  }
+</style>
+<div id="main">
+  <div class="col-md-3" >
+    <div class="bar">
+      <input type="text" v-model="searchString" placeholder="Film ara..." />
+    </div>
+    <ul>
+      <li v-for="article in filteredArticles">
+        <img v-bind:src="article.image" />
+        <p>{{article.title}} - {{article.price}} TL</p>
+        <input type="button" class="btn btn-default" v-on:click="ekle(article)" value="Sepete Ekle" />
+      </li>
+    </ul>
+  </div>
+  <div id="sepet" class="col-md-3" style="margin-left:100px; margin-top:50px;">
+    <table class="table table-responsive">
+      <th style="width:250px;">Film</th>
+      <th>Adet</th>
+      <th>Ücret</th>
+      <th>Sil</th>
+      <tr v-for="film in sepettekiFilmler">
+        <td>{{film.title}}</td>
+        <td><input class="btn btn-xs btn-info" type="button" value="-" v-on:click="eksi(film)"> {{film.ticketCount}} <input class="btn btn-xs btn-info"
+            type="button" value="+" v-on:click="arti(film)"></td>
+        <td>{{film.price}} TL</td>
+        <td><input class="btn btn-xs btn-danger" type="button" v-on:click="sil(film)" value="Sil" /></td>
+      </tr>
+      <tr>
+        <td>Toplam Ücret:</td>
+        <td></td>
+        <td></td>
+        <td>{{toplam}} TL</td>
+
+      </tr>
+    </table>
+  </div>
+  <div id="edit" class="col-md-3" style="margin-left:100px; margin-top:50px;">
+    <table class="table table-responsive">
+      <th style="width:250px;">Film Adı</th>
+      <th>Ücret</th>
+
+      <tr v-for="film in articles">
+        <td><input type="" v-model="film.title"/></td>
+        
+        <td><input type="" v-model="film.price"/></td>
+        
+      </tr>
+    </table>
+  </div>
+</div>
+<script type="text/javascript">
+  var demo = new Vue({
+    el: '#main',
+    data: {
+      searchString: "",
+      articles: [
+        {
+          "title": "The Good, The Bad and the Ugly",
+          "url": "#",
+          "image": "https://ae01.alicdn.com/kf/HTB1i6Ksb2NZWeJjSZFpq6xjBFXae/The-Good-the-Bad-and-the-Ugly-Clint-Eastwood-western-movies-poster-Print-Wall-Decor-12x18.jpg_640x640.jpg",
+          "price": 12,
+          "isInBasket": false,
+          "ticketCount": 0
+        },
+        {
+          "title": "Up",
+          "url": "#",
+          "image": "https://images-na.ssl-images-amazon.com/images/M/MV5BMTk3NDE2NzI4NF5BMl5BanBnXkFtZTgwNzE1MzEyMTE@._V1_SY1000_CR0,0,664,1000_AL_.jpg",
+          "price": 15,
+          "isInBasket": false,
+          "ticketCount": 0
+
+        },
+        {
+          "title": "The Godfather",
+          "url": "#",
+          "image": "https://lh3.googleusercontent.com/Ktt67mGRGOPTA2WJDhCtNEsI_ewdwR1sbw8_71_en_Xl03ZVtUiWpnqoVrhIAfqdtXU=w300",
+          "price": 17,
+          "isInBasket": false,
+          "ticketCount": 0
+        },
+        {
+          "title": "Lord Of The Rings",
+          "url": "#",
+          "image": "http://i0.kym-cdn.com/photos/images/original/000/205/306/animaatjes-lord-of-the-rings-73676.jpg",
+          "price": 19,
+          "isInBasket": false,
+          "ticketCount": 0
+        },
+        {
+          "title": "Back To The Future",
+          "url": "#",
+          "image": "https://static1.squarespace.com/static/52ea8d18e4b0fdfc772a9bb1/t/561e22abe4b0b97ecf18ece8/1444815542169/?format=750w",
+          "price": 27,
+          "isInBasket": false,
+          "ticketCount": 0
+        },
+        {
+          "title": "Fight Club",
+          "url": "#",
+          "image": "https://static1.squarespace.com/static/53c04570e4b09b9453a786c0/t/5458299ee4b0e779a13634b4/1415063968274/fightclub?format=750w",
+          "price": 32,
+          "isInBasket": false,
+          "ticketCount": 0
+        }
+      ]
+    },
+    methods: {
+      ekle: function (article) {
+        if (!article.isInBasket) {
+          article.isInBasket = true;
+          article.ticketCount = 1;
+        }
+      },
+      sil: function (article) {
+        if (article.isInBasket) {
+          article.isInBasket = false;
+          article.ticketCount = 0;
+        }
+      },
+      arti: function (article) {
+        article.ticketCount += 1;
+      },
+      eksi: function (article) {
+        if (article.ticketCount > 0) {
+          article.ticketCount -= 1;
+
+        }
+      }
+    },
+    computed: {
+      filteredArticles: function () {
+        var articles_array = this.articles, searchString = this.searchString;
+        if (!searchString) {
+          return articles_array;
+        }
+        searchString = searchString.trim().toLowerCase();
+        articles_array = articles_array.filter(function (item) {
+          if (item.title.toLowerCase().indexOf(searchString) !== -1) {
+            return item;
+          }
+        })
+
+        return articles_array;;
+      },
+      sepettekiFilmler: function () {
+        sepetFilm = this.articles.filter(function (item) {
+          if (item.isInBasket) {
+            return item;
+          }
+        })
+        console.log(this.articles);
+        return sepetFilm;
+      },
+      toplam: function () {
+        var total = 0;
+        this.sepettekiFilmler.forEach(function (s) {
+          total += s.price * s.ticketCount;
+        })
+        return total;
+      }
+    }
+  });
+
+</script>
